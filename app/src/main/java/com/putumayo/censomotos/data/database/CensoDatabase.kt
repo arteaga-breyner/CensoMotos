@@ -15,7 +15,7 @@ import com.putumayo.censomotos.data.entity.Motocicleta
  */
 @Database(
     entities = [Motocicleta::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class CensoDatabase : RoomDatabase() {
@@ -37,17 +37,16 @@ abstract class CensoDatabase : RoomDatabase() {
                 )
                     .addCallback(DatabaseCallback())
                     // Las migraciones se agregan aquí cuando suba la versión:
-                    // .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_2)
                     .build()
                 INSTANCE = instance
                 instance
             }
         }
 
-        // Migración de ejemplo para versión futura (1 → 2)
         val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                // ALTER TABLE motocicletas ADD COLUMN nuevo_campo TEXT DEFAULT ''
+                database.execSQL("ALTER TABLE motocicletas ADD COLUMN tipo TEXT NOT NULL DEFAULT ''")
             }
         }
 
