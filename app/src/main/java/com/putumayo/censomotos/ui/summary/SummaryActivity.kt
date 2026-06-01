@@ -13,7 +13,7 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.putumayo.censomotos.databinding.ActivitySummaryBinding
-import com.putumayo.censomotos.utils.ExcelExporter
+import com.putumayo.censomotos.utils.CsvExporter
 import com.putumayo.censomotos.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 import java.io.File
@@ -148,26 +148,26 @@ class SummaryActivity : AppCompatActivity() {
 
     private fun exportarExcel() {
         binding.btnExportarExcel.isEnabled = false
-        binding.btnExportarExcel.text = "⏳ Generando..."
+        binding.btnExportarExcel.text = "Generando..."
 
         lifecycleScope.launch {
             val motos = viewModel.obtenerTodasSync()
-            val resultado = ExcelExporter.exportar(this@SummaryActivity, motos)
+            val resultado = CsvExporter.exportar(this@SummaryActivity, motos)
 
             runOnUiThread {
                 binding.btnExportarExcel.isEnabled = true
-                binding.btnExportarExcel.text = "📥  EXPORTAR A EXCEL"
+                binding.btnExportarExcel.text = "EXPORTAR CSV (Excel)"
 
                 if (resultado.exito) {
                     ultimaRutaExcel = resultado.rutaArchivo
                     binding.btnCompartir.visibility = android.view.View.VISIBLE
                     Snackbar.make(
                         binding.root,
-                        "✅ Excel guardado: ${resultado.nombreArchivo}",
+                        "Guardado en Descargas: ${resultado.nombreArchivo}",
                         Snackbar.LENGTH_LONG
                     ).setAction("Compartir") { compartirExcel() }.show()
                 } else {
-                    Snackbar.make(binding.root, "❌ ${resultado.mensaje}", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(binding.root, "Error: ${resultado.mensaje}", Snackbar.LENGTH_LONG).show()
                 }
             }
         }
@@ -189,7 +189,7 @@ class SummaryActivity : AppCompatActivity() {
             }
 
             val intent = Intent(Intent.ACTION_SEND).apply {
-                type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                type = "text/csv"
                 putExtra(Intent.EXTRA_STREAM, uri)
                 putExtra(Intent.EXTRA_SUBJECT, "Censo de Motocicletas Putumayo")
                 putExtra(Intent.EXTRA_TEXT, "Adjunto el archivo de censo de motocicletas.")
