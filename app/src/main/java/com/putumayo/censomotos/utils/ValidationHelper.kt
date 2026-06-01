@@ -11,6 +11,26 @@ object ValidationHelper {
         "Pulsar", "Hero", "Bera", "UM", "Otro"
     )
 
+    val TIPOS_POR_MARCA: Map<String, List<String>> = mapOf(
+        "Yamaha"        to listOf("FZ", "FZ-S", "FZ25", "XTZ", "YBR", "Crypton", "SZ-RR", "Fazer", "MT-03", "Otro"),
+        "Honda"         to listOf("CB190R", "CB160R", "CGL", "XR", "Wave", "Twister", "Tornado", "Titan", "Otro"),
+        "Suzuki"        to listOf("GS150", "EN125", "GSX-R", "Gixxer", "Intruder", "Bandit", "Otro"),
+        "Bajaj"         to listOf("Pulsar NS200", "Pulsar NS160", "Pulsar 220F", "Pulsar 150", "Pulsar 125", "Boxer", "Dominar", "Avenger", "Otro"),
+        "Kawasaki"      to listOf("Z250", "Z400", "Ninja 300", "Ninja 400", "Versys", "W175", "Otro"),
+        "AKT"           to listOf("Dynamic", "TT125", "NKD125", "TTX", "AK125", "Otro"),
+        "TVS"           to listOf("Apache RTR 160", "Apache RTR 200", "Sport", "Star City", "Otro"),
+        "Auteco"        to listOf("Discover", "CT100", "Platina", "Otro"),
+        "Royal Enfield" to listOf("Bullet 350", "Classic 350", "Meteor 350", "Hunter 350", "Otro"),
+        "KTM"           to listOf("Duke 200", "Duke 250", "Duke 390", "RC 200", "Otro"),
+        "Hero"          to listOf("Hunk", "Ignitor", "Achiever", "Glamour", "Otro"),
+        "UM"            to listOf("Renegade", "Xtreet", "Otro"),
+        "Otro"          to listOf("Otro")
+    )
+
+    fun getTiposPorMarca(marca: String): List<String> {
+        return TIPOS_POR_MARCA[marca] ?: listOf("Otro")
+    }
+
     val CILINDRADAS_VALIDAS = listOf(50, 80, 100, 110, 125, 150, 175, 200, 250, 300, 400, 500)
 
     val MUNICIPIOS_VALIDOS = listOf(
