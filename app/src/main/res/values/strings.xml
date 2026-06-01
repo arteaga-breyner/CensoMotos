@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Censo Motos</string>
+    <string name="nueva_moto">➕ NUEVA MOTO</string>
+    <string name="ver_resumen">📊 VER RESUMEN</string>
+    <string name="guardar">GUARDAR</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="exportar_excel">📥 EXPORTAR EXCEL</string>
+    <string name="ingreso_manual">Ingreso Manual</string>
+    <string name="ingreso_voz">🎤 Por Voz</string>
+    <string name="marca">Marca *</string>
+    <string name="cilindraje">Cilindraje (cc) *</string>
+    <string name="modelo">Año Modelo *</string>
+    <string name="color">Color *</string>
+    <string name="municipio">Municipio *</string>
+    <string name="seleccione">-- Seleccione --</string>
+    <string name="total_motos">Total motos registradas</string>
+    <string name="habla_ahora">🎤 Habla ahora…</string>
+    <string name="escuchando">Escuchando…</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="confirmar_eliminar">¿Eliminar este registro?

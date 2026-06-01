@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema principal: alto contraste para uso en exteriores -->
+    <style name="Theme.CensoMotos" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+
+    <!-- Estilo botón principal grande (campo) -->
+    <style name="ButtonPrimary" parent="Widget.Material3.Button">
+        <item name="android:minHeight">60dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+    <!-- Estilo botón secundario -->
+    <style name="ButtonSecondary" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Estilo Spinner/Dropdown campo -->
+    <style name="SpinnerStyle">
+        <item name="android:background">@drawable/spinner_bg</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <!-- Estilo Toolbar -->
+    <style name="AppToolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/primary</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+</resources>

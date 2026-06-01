@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:navigationIcon="@drawable/ic_arrow_back_white"
+            app:title="Registrar Moto"
+            app:titleTextColor="@color/white" />
+
+        <!-- Tabs: Manual / Por Voz -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/primary"
+            app:tabTextColor="#BBDEFB"
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorColor="@color/secondary"
+            app:tabIndicatorHeight="4dp"
+            app:tabTextAppearance="@style/TextAppearance.Material3.TitleMedium">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✏️  MANUAL" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🎤  POR VOZ" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <!-- Contenedor formulario / voz -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- ── PANEL MANUAL ── -->
+            <LinearLayout
+                android:id="@+id/panelManual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- MARCA -->
+                <TextView style="@style/LabelStyle" android:text="Marca *" />
+                <Spinner
+                    android:id="@+id/spinnerMarca"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="16dp"
+                    style="@style/SpinnerStyle" />
+
+                <!-- CILINDRAJE -->
+                <TextView style="@style/LabelStyle" android:text="Cilindraje (cc) *" />
+                <Spinner
+                    android:id="@+id/spinnerCilindraje"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="16dp"
+                    style="@style/SpinnerStyle" />
+
+                <!-- MODELO (AÑO) -->
+                <TextView style="@style/LabelStyle" android:text="Año Modelo *" />
+                <Spinner
+                    android:id="@+id/spinnerModelo"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="16dp"
+                    style="@style/SpinnerStyle" />
+
+                <!-- COLOR -->
+                <TextView style="@style/LabelStyle" android:text="Color *" />
+                <Spinner
+                    android:id="@+id/spinnerColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="16dp"
+                    style="@style/SpinnerStyle" />
+
+                <!-- MUNICIPIO -->
+                <TextView style="@style/LabelStyle" android:text="Municipio *" />
+                <Spinner
+                    android:id="@+id/spinnerMunicipio"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="24dp"
+                    style="@style/SpinnerStyle" />
+
+                <!-- Botón guardar -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGuardar"
+                    android:layout_width="match_parent"
+                    android:layout_height="68dp"
+                    android:text="💾  GUARDAR MOTO"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/secondary"
+                    app:cornerRadius="12dp" />
+
+            </LinearLayout>
+
+            <!-- ── PANEL VOZ ── -->
+            <LinearLayout
+                android:id="@+id/panelVoz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:visibility="gone"
+                android:padding="8dp">
+
+                <!-- Instrucciones -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    app:cardBackgroundColor="#E3F2FD"
+                    app:cardCornerRadius="10dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:text="Di en voz alta:\n\n\"[Marca] [Cilindraje] color [Color] modelo [Año]\"\n\nEjemplo:\n\"Yamaha 125 color roja modelo 2022\""
+                        android:textSize="17sp"
+                        android:textColor="@color/text_primary"
+                        android:lineSpacingMultiplier="1.4" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Botón micrófono -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMicrofono"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:text="🎤"
+                    android:textSize="52sp"
+                    app:backgroundTint="@color/mic_idle"
+                    app:cornerRadius="70dp"
+                    android:layout_marginBottom="16dp"
+                    app:elevation="8dp" />
+
+                <TextView
+                    android:id="@+id/tvEstadoVoz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Presiona el micrófono"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Resultado reconocido -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardResultadoVoz"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="10dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Texto reconocido:"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_secondary" />
+                        <TextView
+                            android:id="@+id/tvTextoReconocido"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textStyle="italic"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginBottom="12dp" />
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="#E0E0E0" android:layout_marginBottom="12dp"/>
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Datos extraídos:" android:textSize="14sp" android:textStyle="bold"
+                            android:textColor="@color/text_secondary" android:layout_marginBottom="8dp"/>
+
+                        <TextView android:id="@+id/tvDatosExtraidos"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="16sp" android:textColor="@color/text_primary"
+                            android:lineSpacingMultiplier="1.5" />
+
+                        <!-- Municipio en voz (solo el dropdown) -->
+                        <TextView style="@style/LabelStyle"
+                            android:text="Municipio *" android:layout_marginTop="12dp"/>
+                        <Spinner
+                            android:id="@+id/spinnerMunicipioVoz"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_marginBottom="16dp"
+                            style="@style/SpinnerStyle" />
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnGuardarVoz"
+                                android:layout_width="0dp"
+                                android:layout_height="60dp"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="8dp"
+                                android:text="💾 GUARDAR"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                app:backgroundTint="@color/success"
+                                app:cornerRadius="10dp" />
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnReintentar"
+                                android:layout_width="0dp"
+                                android:layout_height="60dp"
+                                android:layout_weight="1"
+                                android:text="🔄 REPETIR"
+                                android:textSize="17sp"
+                                app:strokeColor="@color/primary"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                app:cornerRadius="10dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Municipio obligatorio si voz no capturó todo -->
+                <TextView
+                    android:id="@+id/tvMensajeVoz"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/error"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

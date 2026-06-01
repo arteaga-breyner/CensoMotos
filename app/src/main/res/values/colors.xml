@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta principal: alto contraste para exteriores -->
+    <color name="primary">#1565C0</color>         <!-- Azul profundo -->
+    <color name="primary_dark">#0D47A1</color>
+    <color name="secondary">#E65100</color>        <!-- Naranja intenso -->
+    <color name="secondary_dark">#BF360C</color>
+
+    <!-- Superficie y fondos -->
+    <color name="surface">#FFFFFF</color>
+    <color name="background">#F5F5F5</color>
+    <color name="on_surface">#212121</color>
+
+    <!-- Texto -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#616161</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Estado -->
+    <color name="success">#2E7D32</color>
+    <color name="error">#C62828</color>
+    <color name="warning">#F57F17</color>
+
+    <!-- Tarjetas de municipio -->
+    <color name="card_mocoa">#1565C0</color>
+    <color name="card_puerto_asis">#2E7D32</color>
+    <color name="card_puerto_caicedo">#6A1B9A</color>
+    <color name="card_villagarzon">#E65100</color>
+
+    <!-- Botón voz -->
+    <color name="mic_idle">#E53935</color>
+    <color name="mic_active">#FF1744</color>
+</resources>
