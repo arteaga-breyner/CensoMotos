@@ -105,12 +105,26 @@ object VoiceEntityExtractor {
 
     data class DatosExtraidos(
         val marca: String?,
+        val tipo: String?,
         val cilindraje: Int?,
         val modelo: Int?,
         val color: String?
     ) {
         fun estaCompleto() = marca != null && cilindraje != null && modelo != null && color != null
     }
+
+    // Tipos conocidos para extracción por voz
+    private val TIPOS_VOZ = listOf(
+        "fz25", "fz-25", "fz 25", "fz s", "fz-s", "fz",
+        "xtz", "ybr", "crypton", "fazer", "mt03", "mt-03",
+        "cb190", "cb160", "cgl", "twister", "tornado", "titan",
+        "gs150", "en125", "gixxer",
+        "pulsar ns200", "pulsar ns160", "pulsar 220", "pulsar 150", "pulsar 125", "pulsar",
+        "boxer", "dominar", "avenger",
+        "ninja", "z250", "z400", "w175",
+        "dynamic", "tt125", "nkd", "ak125",
+        "apache", "duke", "rc200"
+    )
 
     // Sinónimos / variaciones para marcas
     private val MARCAS_MAP = mapOf(
@@ -158,10 +172,20 @@ object VoiceEntityExtractor {
 
         return DatosExtraidos(
             marca = extraerMarca(textoNorm),
+            tipo = extraerTipo(textoNorm),
             cilindraje = extraerCilindraje(textoNorm),
             modelo = extraerModelo(textoNorm),
             color = extraerColor(textoNorm)
         )
+    }
+
+    private fun extraerTipo(texto: String): String? {
+        // Busca tipos ordenados por longitud descendente para evitar coincidencias parciales
+        return TIPOS_VOZ.sortedByDescending { it.length }.firstOrNull { texto.contains(it) }
+            ?.let { tipo ->
+                // Capitalizar correctamente
+                tipo.split(" ").joinToString(" ") { w -> w.replaceFirstChar { it.uppercase() } }
+            }
     }
 
     private fun extraerMarca(texto: String): String? {
