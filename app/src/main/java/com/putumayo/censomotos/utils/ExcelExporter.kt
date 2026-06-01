@@ -8,6 +8,7 @@ import android.provider.MediaStore
 import com.putumayo.censomotos.data.entity.Motocicleta
 import org.apache.poi.ss.usermodel.*
 import org.apache.poi.ss.util.CellRangeAddress
+import org.apache.poi.xssf.usermodel.XSSFXSSFCellStyle
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import java.io.File
 import java.io.FileOutputStream
@@ -76,8 +77,8 @@ object ExcelExporter {
     private fun crearHojaDatosCompletos(
         wb: XSSFWorkbook,
         motos: List<Motocicleta>,
-        estiloEncabezado: CellStyle,
-        estiloAlternado: CellStyle
+        estiloEncabezado: XSSFCellStyle,
+        estiloAlternado: XSSFCellStyle
     ) {
         val hoja = wb.createSheet("Datos Completos")
         hoja.defaultColumnWidth = 16
@@ -86,7 +87,7 @@ object ExcelExporter {
         val filaTitulo = hoja.createRow(0)
         val celdaTitulo = filaTitulo.createCell(0)
         celdaTitulo.setCellValue("CENSO DE MOTOCICLETAS - PUTUMAYO")
-        val estiloTitulo = wb.createCellStyle().apply {
+        val estiloTitulo = wb.createXSSFCellStyle().apply {
             val font = wb.createFont()
             font.bold = true
             font.fontHeightInPoints = 14
@@ -143,8 +144,8 @@ object ExcelExporter {
     private fun crearHojaResumenMunicipio(
         wb: XSSFWorkbook,
         motos: List<Motocicleta>,
-        estiloEncabezado: CellStyle,
-        estiloTotal: CellStyle
+        estiloEncabezado: XSSFCellStyle,
+        estiloTotal: XSSFCellStyle
     ) {
         val hoja = wb.createSheet("Resumen por Municipio")
         hoja.defaultColumnWidth = 20
@@ -187,8 +188,8 @@ object ExcelExporter {
     private fun crearHojaResumenGeneral(
         wb: XSSFWorkbook,
         motos: List<Motocicleta>,
-        estiloEncabezado: CellStyle,
-        estiloTotal: CellStyle
+        estiloEncabezado: XSSFCellStyle,
+        estiloTotal: XSSFCellStyle
     ) {
         val hoja = wb.createSheet("Resumen General")
         var filaActual = 0
@@ -213,8 +214,8 @@ object ExcelExporter {
         agrupado: Map<String, List<Motocicleta>>,
         titulo: String,
         filaInicio: Int,
-        estiloEncabezado: CellStyle,
-        estiloTotal: CellStyle
+        estiloEncabezado: XSSFCellStyle,
+        estiloTotal: XSSFCellStyle
     ): Int {
         hoja.createRow(filaInicio).createCell(0).setCellValue(titulo)
         hoja.createRow(filaInicio + 1).apply {
@@ -245,8 +246,8 @@ object ExcelExporter {
 
     // ── Estilos ──────────────────────────────────────────────────────────────
 
-    private fun crearEstiloEncabezado(wb: XSSFWorkbook): CellStyle {
-        return wb.createCellStyle().apply {
+    private fun crearEstiloEncabezado(wb: XSSFWorkbook): XSSFCellStyle {
+        return wb.createXSSFCellStyle().apply {
             val font = wb.createFont()
             font.bold = true
             font.color = IndexedColors.WHITE.index
@@ -258,8 +259,8 @@ object ExcelExporter {
         }
     }
 
-    private fun crearEstiloTotal(wb: XSSFWorkbook): CellStyle {
-        return wb.createCellStyle().apply {
+    private fun crearEstiloTotal(wb: XSSFWorkbook): XSSFCellStyle {
+        return wb.createXSSFCellStyle().apply {
             val font = wb.createFont()
             font.bold = true
             setFont(font)
@@ -268,8 +269,8 @@ object ExcelExporter {
         }
     }
 
-    private fun crearEstiloAlternado(wb: XSSFWorkbook): CellStyle {
-        return wb.createCellStyle().apply {
+    private fun crearEstiloAlternado(wb: XSSFWorkbook): XSSFCellStyle {
+        return wb.createXSSFCellStyle().apply {
             fillForegroundColor = IndexedColors.LIGHT_CORNFLOWER_BLUE.index
             fillPattern = FillPatternType.SOLID_FOREGROUND
         }
