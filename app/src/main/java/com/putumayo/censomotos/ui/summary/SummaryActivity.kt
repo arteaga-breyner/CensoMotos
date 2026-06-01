@@ -78,7 +78,7 @@ class SummaryActivity : AppCompatActivity() {
             runOnUiThread {
                 binding.llTablaMarcas.removeAllViews()
                 agregarFilaTabla(binding.llTablaMarcas, "Marca", "Total", esEncabezado = true)
-                porMarca.forEach { agregarFilaTabla(binding.llTablaMarcas, it.marca, it.total.toString()) }
+                porMarca.forEach { agregarFilaTabla(binding.llTablaMarcas, it.nombre, it.total.toString()) }
             }
 
             // Por color
@@ -86,7 +86,7 @@ class SummaryActivity : AppCompatActivity() {
             runOnUiThread {
                 binding.llTablaColores.removeAllViews()
                 agregarFilaTabla(binding.llTablaColores, "Color", "Total", esEncabezado = true)
-                porColor.forEach { agregarFilaTabla(binding.llTablaColores, it.marca, it.total.toString()) }
+                porColor.forEach { agregarFilaTabla(binding.llTablaColores, it.nombre, it.total.toString()) }
             }
         }
     }

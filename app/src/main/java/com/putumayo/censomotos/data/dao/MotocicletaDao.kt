@@ -63,13 +63,13 @@ interface MotocicletaDao {
     @Query("SELECT municipio, COUNT(*) as total FROM motocicletas GROUP BY municipio ORDER BY total DESC")
     suspend fun contarPorMunicipioAgrupado(): List<ResumenMunicipio>
 
-    @Query("SELECT marca, COUNT(*) as total FROM motocicletas GROUP BY marca ORDER BY total DESC")
+    @Query("SELECT marca as nombre, COUNT(*) as total FROM motocicletas GROUP BY marca ORDER BY total DESC")
     suspend fun contarPorMarca(): List<ResumenCampo>
 
     @Query("SELECT cilindraje, COUNT(*) as total FROM motocicletas GROUP BY cilindraje ORDER BY total DESC")
     suspend fun contarPorCilindraje(): List<ResumenCilindraje>
 
-    @Query("SELECT color, COUNT(*) as total FROM motocicletas GROUP BY color ORDER BY total DESC")
+    @Query("SELECT color as nombre, COUNT(*) as total FROM motocicletas GROUP BY color ORDER BY total DESC")
     suspend fun contarPorColor(): List<ResumenCampo>
 
     // ── Detección de duplicados ──────────────────────────────────────────────
@@ -101,7 +101,7 @@ data class ResumenMunicipio(
 )
 
 data class ResumenCampo(
-    val marca: String,
+    val nombre: String,
     val total: Int
 )
 
