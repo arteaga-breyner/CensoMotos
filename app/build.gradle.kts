@@ -42,19 +42,9 @@ android {
         viewBinding = true
     }
 
-    // Apache POI necesita estas opciones de empaquetado
     packaging {
         resources {
-            excludes += setOf(
-                "META-INF/DEPENDENCIES",
-                "META-INF/LICENSE",
-                "META-INF/LICENSE.txt",
-                "META-INF/license.txt",
-                "META-INF/NOTICE",
-                "META-INF/NOTICE.txt",
-                "META-INF/notice.txt",
-                "META-INF/*.kotlin_module"
-            )
+            excludes += "META-INF/*.kotlin_module"
         }
     }
 }
@@ -83,10 +73,6 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-
-    // Apache POI para Excel (versión Android-compatible)
-    implementation("org.apache.poi:poi:5.2.3")
-    implementation("org.apache.poi:poi-ooxml:5.2.3")
 
     // RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.2")
