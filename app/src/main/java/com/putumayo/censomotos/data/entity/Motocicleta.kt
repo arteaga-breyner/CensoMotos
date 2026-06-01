@@ -16,6 +16,7 @@ data class Motocicleta(
     val id: Long = 0,
 
     val marca: String,           // Honda, Yamaha, Suzuki, Bajaj, Kawasaki, Otro
+    val tipo: String = "",       // FZ, XTZ, CB, Pulsar, etc.
     val cilindraje: Int,         // 50-500 cc
     val modelo: Int,             // Año: 1990-2026
     val color: String,           // Roja, Azul, Negra, Blanca, Gris, etc.
@@ -34,5 +35,8 @@ data class Motocicleta(
     /**
      * Descripción compacta para la lista de registros.
      */
-    fun getDescripcionCorta(): String = "$marca $cilindraje cc - $color - $modelo"
+    fun getDescripcionCorta(): String {
+        val tipoStr = if (tipo.isNotBlank()) " $tipo" else ""
+        return "$marca$tipoStr $cilindraje cc - $color - $modelo"
+    }
 }
