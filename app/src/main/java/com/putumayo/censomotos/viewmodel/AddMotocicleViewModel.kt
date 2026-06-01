@@ -29,6 +29,7 @@ class AddMotocicleViewModel(application: Application) : AndroidViewModel(applica
      */
     fun guardarMoto(
         marca: String,
+        tipo: String,
         cilindrajeStr: String,
         modeloStr: String,
         color: String,
@@ -42,16 +43,21 @@ class AddMotocicleViewModel(application: Application) : AndroidViewModel(applica
             return
         }
 
-        val cilindraje = cilindrajeStr.toInt()
-        val modelo = modeloStr.toInt()
+        val cilindraje = cilindrajeStr.toIntOrNull() ?: run {
+            _errorMensaje.value = "El cilindraje debe ser un número válido"
+            return
+        }
+        val modelo = modeloStr.toIntOrNull() ?: run {
+            _errorMensaje.value = "El año debe ser un número válido"
+            return
+        }
 
         viewModelScope.launch {
-            // Verificar duplicado si no se está forzando
             if (!forzar) {
                 val esDup = repository.esDuplicado(marca, cilindraje, modelo, color, municipio, editId)
                 if (esDup) {
                     _advertenciaDuplicado.value = Motocicleta(
-                        marca = marca, cilindraje = cilindraje,
+                        marca = marca, tipo = tipo, cilindraje = cilindraje,
                         modelo = modelo, color = color, municipio = municipio
                     )
                     return@launch
@@ -61,6 +67,7 @@ class AddMotocicleViewModel(application: Application) : AndroidViewModel(applica
             val moto = Motocicleta(
                 id = editId,
                 marca = marca,
+                tipo = tipo,
                 cilindraje = cilindraje,
                 modelo = modelo,
                 color = color,
